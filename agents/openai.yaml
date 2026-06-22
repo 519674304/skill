@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Inception"
+  short_description: "Guide projects from requirements to approved plans"
+  default_prompt: "Use $project-inception to take this project from requirements through approved implementation plans."
