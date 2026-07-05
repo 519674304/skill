@@ -1,4 +1,4 @@
----
+﻿---
 name: project-inception
 description: Guide a software project from initial context through approved requirements, DDD-informed domain and responsibility design, lifecycle and extension design, technology selection, technical architecture, and decoupled implementation plans. Use when starting a new software project, restarting an inadequately designed project, decomposing requirements before coding, or when the user asks for project initiation, requirement analysis, business/domain design, architecture design, or implementation planning. Enforce explicit approval gates and do not begin implementation.
 ---
@@ -32,11 +32,14 @@ Do not start by designing isolated classes, tables, APIs, plugins, or UI compone
 - Use `$brainstorming` to clarify intent one question at a time.
 - Prefer facts from existing code and documents over assumptions.
 - Separate business requirements from implementation choices.
+- In requirements, keep the main flow, sunny-day scenarios, and smoke scenarios primary; collect validation, boundary, and exception cases into a visible issue table for later responsibility and architecture design instead of interrogating every edge case one by one.
 - Use DDD proportionally. Record why full, light, or no DDD modeling is appropriate.
 - Select patterns only after identifying lifecycle and real variation points.
 - Record why plugins, interceptors, listeners, factories, strategies, state machines, or middleware are used or rejected.
 - Choose technology and middleware from quantified constraints. Explicitly state when no middleware is needed.
 - Maintain requirement-to-test traceability.
+- Before choosing exception-handling patterns, define a structured issue taxonomy: category, severity, producing responsibility, receiving responsibility, continuation policy, logging level, and user-facing conversion. Define concrete error codes only when the project needs them.
+- Work backward from the project's decisive output. Maintain approved key input and output examples as executable-looking data contracts, and use them to correct requirements, domain design, architecture, and plans when prose drifts.
 - Keep simple responsibilities in overview documents only when approximately 10-20 lines fully explain them. Give complex responsibilities their own documents.
 - Keep implementation plans separate from requirements and design documents.
 
@@ -61,6 +64,8 @@ Read [references/requirements.md](references/requirements.md).
 Use brainstorming to establish the whole first: purpose, users, scope, primary scenarios, success metrics, constraints, and delivery stages. Then decompose complex capabilities. Finish with the requirements safety-net audit.
 
 Write the requirements documents and traceable requirement IDs.
+
+Create the project's key example baselines under `docs/project/baselines/`. Read [references/key-example-baselines.md](references/key-example-baselines.md). At minimum, include one primary-flow input example, one expected output example, and an explicit mapping between them. These are required review artifacts, not illustrative appendices.
 
 **Approval gate:** Ask the user to approve the complete requirements set. Stop until approved.
 
@@ -157,4 +162,5 @@ Block final approval when either:
 - Do not split tiny responsibilities into document noise.
 - Do not choose a database, cache, queue, search engine, or plugin framework before proving the need.
 - Do not hide unresolved business decisions inside technical assumptions.
+
 

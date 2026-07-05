@@ -1,4 +1,4 @@
-# Requirements Phase
+﻿# Requirements Phase
 
 ## Whole First
 
@@ -14,6 +14,8 @@ Confirm these project-level decisions before decomposing features:
 8. Business terminology
 
 Use brainstorming one question at a time. Prefer a concrete choice when ambiguity would affect downstream design.
+
+Requirements clarification must prioritize the main flow, sunny-day scenarios, and smoke scenarios. Do not turn validation, boundary conditions, and rare exception handling into a long one-by-one interrogation. Capture those items in a dedicated issue table with occurrence node, current handling direction, and the later phase that owns the design.
 
 ## Requirements Documents
 
@@ -51,7 +53,7 @@ For every complex capability document, include:
 - Trigger
 - Main flow
 - Alternative flows
-- Exception flows
+- Exception flows, only when they are core to the business outcome; otherwise link to the issue table
 - Business rules
 - Inputs and outputs
 - State changes
@@ -81,9 +83,11 @@ Check:
 - Every capability belongs to a delivery stage.
 - Every main flow has exceptions and recovery.
 - Cross-capability flows are explicit.
-- Import/export, cancellation, retry, timeout, partial success, and duplicate handling are considered where relevant.
+- Import/export, cancellation, retry, timeout, partial success, duplicate handling, validation, boundary, and exception cases are either covered by the main flow or explicitly captured in the issue table for later design.
 - Data lifecycle and deletion are covered.
 - Accessibility, audit, security, and operability are considered proportionally.
 - No requirement contradicts scope or another requirement.
 - Every requirement has acceptance criteria.
 - Open decisions are visible and do not masquerade as assumptions.
+
+

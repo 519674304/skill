@@ -1,4 +1,4 @@
-# Responsibility Design Phase
+﻿# Responsibility Design Phase
 
 ## Whole First
 
@@ -37,9 +37,56 @@ Include:
 - Errors and recovery
 - Concurrency/idempotency rules
 - Extension points
+- Validation, boundary, and exception handling ownership
+- Issue categories, severities, receivers, continuation policies, logging levels, and user-facing conversion
 - Observability
 - Test boundary
 - Alternatives considered
+
+## Validation and Exception Design
+
+When requirements contain an issue table for validation, boundary, or exception cases, resolve it during responsibility and lifecycle design. Consider these patterns only after identifying real variation points and lifecycle timing:
+
+Before selecting a pattern, define a project-wide structured issue contract containing:
+
+- Category: the business or technical area that owns the problem.
+- Severity: use `TIP`, `WARNING`, and `EXCEPTION` by default unless approved project language requires different names.
+- Source: the responsibility that detects and produces the issue.
+- Receiver: the responsibility that owns the response policy for the category.
+- Location and structured details: enough context to identify the affected file, record, rule, request, stage, or operation.
+- Cause: the underlying technical exception when one exists; it may be absent.
+- Continuation policy: continue, skip, degrade, or abort the current operation.
+
+Define severity behavior before concrete codes:
+
+- `TIP`: continue; log at `INFO`; optionally show a non-blocking user message.
+- `WARNING`: continue, skip, or degrade according to the category policy; log at `WARN`.
+- `EXCEPTION`: abort the current operation and preserve the last valid state; log at `ERROR`.
+
+Use category to select the receiving handler and severity to select the generic control-flow and logging policy. Producing responsibilities emit structured issues and must not assemble UI text. Preserve technical causes for diagnostics, but do not expose raw stack traces to users.
+
+Do not invent a full error-code catalog during project inception unless concrete codes are required for an external contract, compatibility, operations, or acceptance. It is sufficient to approve categories, severities, receivers, and handling policies first. A later code format may follow `<CATEGORY>-<SEVERITY>-<SEQUENCE>` or an approved project convention.
+
+Require every validation, warning, and exception path to follow this flow:
+
+```text
+Detect issue
+  -> create structured issue
+  -> route by category to the owning receiver
+  -> apply severity policy
+  -> perform recovery, degradation, or abort
+  -> log at the mapped level
+  -> convert to a user-facing result at the application boundary
+```
+
+Record this taxonomy and flow in the responsibility map. Give unified issue routing and handling its own complex responsibility document when several categories, receivers, recovery policies, or extension mechanisms are involved.
+
+- Use a Chain of Responsibility when validation or processing steps need ordered, independently replaceable handlers.
+- Use interceptors when behavior must run before or after a stable application operation without owning that operation.
+- Use aspect-like centralized handling or a unified exception module when exceptions should be thrown from lower layers and converted into consistent user-facing results at an application boundary.
+- Record why each pattern is used or rejected, including ordering, ownership, failure policy, and test boundary.
+
+Do not push these pattern decisions back into requirements documents. Requirements should state the main behavior and reference the issue table; design documents own the mechanism.
 
 ## Dependency Rules
 
@@ -72,3 +119,5 @@ Split it when it has:
 - Failure ownership is explicit.
 - Test boundaries align with responsibility boundaries.
 - UI changes can occur without moving business rules.
+
+

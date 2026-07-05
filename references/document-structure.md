@@ -9,6 +9,10 @@ docs/project/
     00-overview.md
     01-scope-and-constraints.md
     <complex-capability>-requirements.md
+  baselines/
+    README.md
+    <primary-input-example>.<format>
+    <expected-output-example>.<format>
   domain/
     00-domain-map.md
     <bounded-context>-design.md
@@ -28,6 +32,7 @@ docs/project/
 
 - `00-index.md`: navigation, current phase, approval state, document dependencies.
 - `requirements/`: user and business needs, rules, constraints, acceptance. No framework or class design.
+- `baselines/`: approved primary-flow input and expected-output contracts used to align every later phase. Keep examples implementation-neutral and machine-readable where practical.
 - `domain/`: business language, contexts, aggregates, rules, events, context relationships.
 - `responsibilities/`: responsibility boundaries, contracts, dependencies, errors, extension points, test boundaries.
 - `architecture/`: lifecycle, pattern decisions, technology selection, runtime architecture.

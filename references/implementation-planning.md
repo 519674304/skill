@@ -71,3 +71,4 @@ Adjust when a technical spike must retire a high-risk assumption first.
 - Integration points have contract tests.
 - Performance requirements have benchmark tasks.
 - Rollback, migration, and compatibility are included where relevant.
+

@@ -79,3 +79,4 @@ Define:
 - Capacity assumptions match requirements.
 - Observability can prove acceptance criteria.
 - Technology choices are reversible where change is plausible.
+

@@ -25,6 +25,8 @@ Run this audit after the detailed plans are written and before final approval.
 
 ## Exceptions and Recovery
 
+Before auditing individual paths, verify that the project defines a structured issue taxonomy and that every category has an owning receiver. Verify that severity determines continuation and logging behavior, while category determines the responsible handler. Concrete error-code numbers may remain deferred when no external contract requires them.
+
 - Validation failure
 - Partial success
 - Duplicate input
@@ -38,6 +40,14 @@ Run this audit after the detailed plans are written and before final approval.
 - Restart and recovery
 
 Mark each item applicable, handled, or explicitly out of scope.
+
+Also verify:
+
+- Every issue-producing responsibility emits the shared structured issue contract.
+- No domain responsibility assembles UI error text.
+- `TIP`, `WARNING`, and `EXCEPTION` handling policies are explicit or approved equivalents exist.
+- Technical causes and stack traces are retained for diagnostics but excluded from user-facing output.
+- New errors cannot bypass the unified classification, routing, logging, and conversion flow.
 
 ## Extension Safety
 

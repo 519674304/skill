@@ -80,3 +80,4 @@ Do not use events merely to avoid a direct function call inside one simple respo
 - Context boundaries match change and consistency boundaries.
 - Shared kernels are rare and justified.
 - Failure, compensation, and eventual consistency are explicit.
+

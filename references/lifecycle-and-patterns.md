@@ -81,3 +81,4 @@ Define delivery semantics, duplicate handling, ordering, retry, poison-event han
 - Extension contracts do not expose internal models unnecessarily.
 - Plugin/listener failure cannot corrupt core invariants.
 - Replacing UI, storage, or an algorithm does not rewrite domain rules.
+
