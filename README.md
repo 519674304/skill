@@ -1,5 +1,14 @@
 # Project Inception Skill
 
+## UI prototyping and Git safety
+
+- Web, desktop, mobile, and other graphical UI projects must produce and approve a visual low-fidelity prototype after requirements approval.
+- After the overall direction is approved, the user decides whether further prototype detail is needed. High fidelity is optional.
+- Prototype approval does not bypass domain, architecture, and implementation-plan approval gates.
+- The workflow defines a repository boundary before implementation: dependencies, disposable outputs, caches, logs, local environment files, credentials, and secrets stay out of Git by default.
+- Lockfiles, migrations, required generated source, fixtures, and vendored artifacts are evaluated rather than ignored blindly.
+- Before committing, review status, ignore behavior, and the staged diff; do not use a repository-wide add while unreviewed files are present.
+
 ## 概述
 
 **Project Inception** 是一个用于 Codex 和 VS Code 的 Skill，用于指导软件项目从初始构想经过批准的需求、DDD 启发的领域设计、生命周期和扩展设计、技术选择、技术架构，最后到解耦的实现计划。
@@ -242,4 +251,3 @@ Supersedes: [document IDs]
 ## 许可证
 
 MIT
-

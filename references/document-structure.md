@@ -13,6 +13,10 @@ docs/project/
     README.md
     <primary-input-example>.<format>
     <expected-output-example>.<format>
+  experience/
+    00-experience-overview.md
+    <low-fidelity-prototype>.<format>
+    <optional-refined-prototype>.<format>
   domain/
     00-domain-map.md
     <bounded-context>-design.md
@@ -33,6 +37,7 @@ docs/project/
 - `00-index.md`: navigation, current phase, approval state, document dependencies.
 - `requirements/`: user and business needs, rules, constraints, acceptance. No framework or class design.
 - `baselines/`: approved primary-flow input and expected-output contracts used to align every later phase. Keep examples implementation-neutral and machine-readable where practical.
+- `experience/`: approved UI screen inventory, navigation and flow model, fidelity decision, and visual prototype artifacts. Omit only with a recorded not-applicable decision.
 - `domain/`: business language, contexts, aggregates, rules, events, context relationships.
 - `responsibilities/`: responsibility boundaries, contracts, dependencies, errors, extension points, test boundaries.
 - `architecture/`: lifecycle, pattern decisions, technology selection, runtime architecture.

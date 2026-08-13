@@ -39,6 +39,7 @@ Every plan item includes:
 - Requirement IDs
 - Context and responsibility IDs
 - ADR IDs
+- UX IDs and approved prototype baseline for UI work
 - Goal
 - Dependencies
 - Concrete files/modules to add or change
@@ -47,6 +48,7 @@ Every plan item includes:
 - Unit, integration, performance, and acceptance tests as applicable
 - Error and rollback handling
 - Completion evidence
+- Version-control boundary changes: intentional tracked paths, ignored artifact classes, generated-source policy, and staged-diff verification
 
 ## Ordering
 
@@ -55,7 +57,7 @@ Prefer:
 2. Core business behavior
 3. Application orchestration
 4. Infrastructure adapters
-5. UI integration
+5. UI implementation against the approved prototype baseline
 6. Cross-cutting observability and hardening
 7. End-to-end acceptance
 
@@ -71,4 +73,6 @@ Adjust when a technical spike must retire a high-risk assumption first.
 - Integration points have contract tests.
 - Performance requirements have benchmark tasks.
 - Rollback, migration, and compatibility are included where relevant.
-
+- UI plans reference approved UX IDs and include visual, interaction-state, responsive, and accessibility acceptance checks as applicable.
+- Plans prevent dependencies, disposable outputs, caches, logs, local environment files, credentials, and secrets from entering Git unintentionally.
+- Lockfiles, migrations, generated source, fixtures, and vendored artifacts have explicit inclusion decisions when ambiguous.

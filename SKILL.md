@@ -1,6 +1,6 @@
 ﻿---
 name: project-inception
-description: Guide a software project from initial context through approved requirements, DDD-informed domain and responsibility design, lifecycle and extension design, technology selection, technical architecture, and decoupled implementation plans. Use when starting a new software project, restarting an inadequately designed project, decomposing requirements before coding, or when the user asks for project initiation, requirement analysis, business/domain design, architecture design, or implementation planning. Enforce explicit approval gates and do not begin implementation.
+description: Guide a software project from initial context through approved requirements, UI prototyping when applicable, DDD-informed domain and responsibility design, lifecycle and extension design, technology selection, technical architecture, and decoupled implementation plans. Use when starting a new software project, restarting an inadequately designed project, decomposing requirements before coding, or when the user asks for project initiation, requirement analysis, UI or Web application design, business/domain design, architecture design, or implementation planning. Enforce explicit approval gates and do not begin implementation.
 ---
 
 # Project Inception
@@ -42,6 +42,9 @@ Do not start by designing isolated classes, tables, APIs, plugins, or UI compone
 - Work backward from the project's decisive output. Maintain approved key input and output examples as executable-looking data contracts, and use them to correct requirements, domain design, architecture, and plans when prose drifts.
 - Keep simple responsibilities in overview documents only when approximately 10-20 lines fully explain them. Give complex responsibilities their own documents.
 - Keep implementation plans separate from requirements and design documents.
+- Establish the repository boundary before implementation. Read [references/version-control.md](references/version-control.md). Do not allow dependencies, generated outputs, caches, logs, temporary files, local environment files, credentials, or secrets into version control by accident.
+- Treat source-control inclusion as an ownership decision, not a filename guess. Lockfiles, migrations, required generated source, fixtures, and other reproducibility inputs may belong in Git; document the decision when it is not obvious.
+- Before any staging or commit operation, inspect repository status, ignore behavior, and the staged diff. Stage reviewed paths intentionally; do not use an indiscriminate repository-wide add while unreviewed or untracked files are present.
 
 ## Required Document Structure
 
@@ -54,6 +57,8 @@ Maintain `docs/project/00-index.md` as navigation and approval state only.
 ### Phase 0: Explore Context
 
 Inspect existing files, documentation, code, version history, constraints, and prior decisions.
+
+Inspect repository hygiene using [references/version-control.md](references/version-control.md): existing ignore rules, tracked generated files, local-only configuration, secret exposure risk, and the expected treatment of dependencies, outputs, caches, logs, lockfiles, migrations, and generated source. For a new repository, define a minimal technology-specific `.gitignore`; for an existing repository, preserve established intentional tracking decisions unless evidence requires a change.
 
 Produce a concise fact inventory and identify contradictions. Do not make architecture decisions yet.
 
@@ -69,7 +74,19 @@ Create the project's key example baselines under `docs/project/baselines/`. Read
 
 **Approval gate:** Ask the user to approve the complete requirements set. Stop until approved.
 
-### Phase 2: Domain and Business Decomposition
+### Phase 2: Experience and Prototyping
+
+Read [references/experience-prototyping.md](references/experience-prototyping.md).
+
+For every Web, desktop, mobile, or other graphical user-interface application, start with a visual low-fidelity prototype after requirements approval. A prose screen list is not a substitute. Validate the screen inventory, navigation, information hierarchy, primary flows, major actions, and essential states without selecting a frontend framework or polishing visual style.
+
+Ask the user to approve the overall experience direction. After approval, ask explicitly whether any uncertain or high-risk flow, interaction state, or responsive layout needs further detail. Refine only what is needed. If no refinement is needed, record the approved low-fidelity prototype as the UI baseline and complete the phase.
+
+For a headless service, library, command-line tool, or background worker, record why this phase is not applicable.
+
+**Approval gate:** Ask the user to approve the prototype baseline or the recorded not-applicable decision. Prototype approval does not authorize frontend development; all downstream gates still apply. Stop until approved.
+
+### Phase 3: Domain and Business Decomposition
 
 Read [references/domain-design.md](references/domain-design.md) and [references/responsibility-design.md](references/responsibility-design.md).
 
@@ -79,7 +96,7 @@ Finish with the domain safety-net audit.
 
 **Approval gate:** Ask the user to approve the domain map, context boundaries, responsibility map, and individual designs. Stop until approved.
 
-### Phase 3: Lifecycle and Extension Design
+### Phase 4: Lifecycle and Extension Design
 
 Read [references/lifecycle-and-patterns.md](references/lifecycle-and-patterns.md).
 
@@ -89,7 +106,7 @@ Evaluate extension mechanisms and patterns against actual variation points. Defi
 
 **Approval gate:** Ask the user to approve lifecycle and extension decisions. Stop until approved.
 
-### Phase 4: Technology and Technical Architecture
+### Phase 5: Technology and Technical Architecture
 
 Read [references/technical-architecture.md](references/technical-architecture.md).
 
@@ -101,13 +118,15 @@ Finish with the architecture safety-net audit.
 
 **Approval gate:** Ask the user to approve technology choices and technical architecture. Stop until approved.
 
-### Phase 5: Implementation Planning
+### Phase 6: Implementation Planning
 
 Read [references/implementation-planning.md](references/implementation-planning.md).
 
 Create `plans/00-roadmap.md` with order, dependencies, milestones, integration points, and simple responsibilities. If a responsibility cannot be implemented clearly in approximately 10-20 lines, create a separate plan document for it.
 
 Every plan item must link requirements, domain/context IDs, responsibility IDs, architecture decisions, concrete changes, tests, and acceptance checks.
+
+Include repository-boundary work when required: ignore-rule updates, generated-code policy, secret-safe configuration examples, and pre-commit verification. Plans must name the files that should be tracked and the classes of local or generated files that must remain untracked.
 
 Finish with the final safety-net audit in [references/final-audit.md](references/final-audit.md).
 
@@ -132,6 +151,7 @@ Use stable IDs such as:
 
 ```text
 REQ-<AREA>-001
+UX-<AREA>-001
 CTX-<NAME>
 RESP-<NAME>
 ADR-001
@@ -143,6 +163,7 @@ Maintain this chain:
 
 ```text
 Requirement
+  -> Approved Experience Baseline (when applicable)
   -> Bounded Context
   -> Responsibility
   -> Architecture Decision
@@ -162,5 +183,3 @@ Block final approval when either:
 - Do not split tiny responsibilities into document noise.
 - Do not choose a database, cache, queue, search engine, or plugin framework before proving the need.
 - Do not hide unresolved business decisions inside technical assumptions.
-
-

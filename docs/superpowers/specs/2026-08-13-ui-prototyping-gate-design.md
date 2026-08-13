@@ -41,6 +41,18 @@ Assign stable `UX-<AREA>-NNN` IDs and trace primary screens and flows to require
 
 Add a focused prototyping reference covering applicability, low-fidelity content, refinement criteria, approval checks, and common omissions. Update the document structure, final audit, implementation-planning guidance, main skill workflow, and README summary so the new phase cannot be skipped accidentally.
 
+## Version-control hygiene
+
+Project inception must also establish a safe Git boundary before implementation artifacts accumulate:
+
+- Inspect or create repository ignore rules from the actual technology stack and tooling rather than copying an oversized generic template.
+- Exclude dependency directories, build and coverage outputs, caches, logs, temporary files, local IDE or operating-system metadata, local environment files, credentials, and secrets unless a documented project requirement explicitly makes a normally generated artifact source-controlled.
+- Do not ignore lockfiles, database migrations, required generated source, fixtures, or other reproducibility inputs merely because they are machine-produced. Decide from ownership, reproducibility, reviewability, and deployment requirements.
+- Before staging or committing, inspect repository status, ignored-file behavior, and the staged diff. Stage intentional paths; do not use an indiscriminate repository-wide add when unreviewed or untracked files are present.
+- Never commit secrets. If a secret is already tracked, stop and use an explicit remediation and credential-rotation workflow rather than relying on a later ignore rule.
+
+Add these checks to context exploration, implementation planning, and the final audit. The skill may design and review the rules while active, but actual implementation commits remain part of the later implementation workflow.
+
 ## Verification scenarios
 
 Test the skill against pressure cases where an agent is asked to:
@@ -50,5 +62,7 @@ Test the skill against pressure cases where an agent is asked to:
 - assume high-fidelity work is mandatory after low-fidelity approval;
 - begin frontend coding immediately after prototype approval;
 - skip the phase for a genuinely headless application without recording why.
+- obey a rushed request to run `git add .` while dependencies, build outputs, coverage, logs, and a local `.env` are unreviewed.
+- overcorrect by ignoring lockfiles or required generated source without checking whether they are reproducibility inputs.
 
 Expected behavior: require low fidelity for applicable UI projects, allow explicit early completion after direction approval, preserve all downstream approval gates, and record a reasoned not-applicable decision for headless projects.

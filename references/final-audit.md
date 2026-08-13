@@ -23,6 +23,15 @@ Run this audit after the detailed plans are written and before final approval.
 - Data translation and anti-corruption needs are handled.
 - Transactions, eventual consistency, and compensation are explicit.
 
+## Experience Baseline
+
+- Every graphical UI project has an approved low-fidelity visual prototype; a prose-only screen list is not accepted.
+- Screen inventory, navigation, information hierarchy, primary flows, major actions, and material states trace to requirements through UX IDs.
+- The user explicitly chose whether further prototype detail was needed after approving the overall direction.
+- UI implementation plans reference the approved prototype baseline and include visual and interaction acceptance checks.
+- A non-UI project has a recorded not-applicable decision rather than a silently skipped phase.
+- Prototype approval was not treated as authorization to bypass downstream design and planning gates.
+
 ## Exceptions and Recovery
 
 Before auditing individual paths, verify that the project defines a structured issue taxonomy and that every category has an owning receiver. Verify that severity determines continuation and logging behavior, while category determines the responsible handler. Concrete error-code numbers may remain deferred when no external contract requires them.
@@ -71,6 +80,15 @@ List and resolve:
 - Missing acceptance tests
 - Stale downstream documents
 - Unapproved dependencies
+
+## Version-Control Safety
+
+- Ignore rules match the actual technology stack and do not hide legitimate source through unjustified broad patterns.
+- Installed dependencies, disposable build/test outputs, coverage, caches, logs, temporary files, local environment overrides, credentials, and secrets remain untracked.
+- Lockfiles, migrations, generated source, fixtures, vendored content, and deployment artifacts have explicit inclusion decisions rather than blanket treatment.
+- Sanitized configuration examples contain no working credentials.
+- Plans require intentional path staging plus status, ignore-rule, staged-diff, and secret checks before commit.
+- Already tracked outputs or exposed secrets have an explicit remediation plan; adding an ignore rule alone is not accepted as remediation.
 
 ## Final Decision
 
