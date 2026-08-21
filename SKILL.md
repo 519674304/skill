@@ -54,6 +54,7 @@ Do not start by designing isolated classes, tables, APIs, plugins, or UI compone
 - Maintain requirement-to-test traceability.
 - Before choosing exception-handling patterns, define a structured issue taxonomy: category, severity, producing responsibility, receiving responsibility, continuation policy, logging level, and user-facing conversion. Define concrete error codes only when the project needs them.
 - Work backward from the project's decisive output. Maintain approved key input and output examples as executable-looking data contracts, and use them to correct requirements, domain design, architecture, and plans when prose drifts.
+- Before requesting implementation approval, perform a critical-path and token-investment review. List the hard or high-uncertainty steps, estimate their relative reasoning/implementation/verification cost, decide whether each cost is justified by the primary flow, and explicitly record what will not receive investment. Reduce or defer unjustified complexity before writing the final checklist. Do not use a file list as a substitute for this review.
 - Keep simple responsibilities in overview documents only when approximately 10-20 lines fully explain them. Give complex responsibilities their own documents.
 - Keep implementation plans separate from requirements and design documents.
 - Establish the repository boundary before implementation. Read [references/version-control.md](references/version-control.md). Do not allow dependencies, generated outputs, caches, logs, temporary files, local environment files, credentials, or secrets into version control by accident.
@@ -97,8 +98,9 @@ After Phase 0, use this compact sequence instead of Phases 1 through 6 when the 
 1. Define the user, primary flow, one decisive input/output baseline, and smoke acceptance checks. Record only import rejection or replacement behavior that can block the smoke flow.
 2. For a graphical application, create and approve one low-fidelity prototype for the primary flow. Skip separate state, responsive, or exception prototypes unless they block use.
 3. Record the smallest domain and responsibility boundary needed to keep the primary flow understandable. Add lifecycle, patterns, or architecture decisions only when implementation uncovers a concrete need.
-4. Create a short file-level implementation checklist linked to the baseline and smoke checks.
-5. Ask for one explicit approval of the compact brief, prototype when applicable, and checklist before implementation.
+4. Perform and record a critical-path and token-investment review: identify the hard steps, assign relative effort, justify each material cost against the primary flow, and list deliberate non-investments. Resolve any high-cost behavior choice that would materially change the user experience.
+5. Create a short file-level implementation checklist linked to the baseline, smoke checks, and effort review.
+6. Ask for one explicit approval of the compact brief, prototype when applicable, effort review, and checklist before implementation.
 
 The compact brief must state that the fast path was selected, why it is safe, and which risks remain intentionally out of scope.
 
@@ -153,6 +155,8 @@ Read [references/implementation-planning.md](references/implementation-planning.
 Create `plans/00-roadmap.md` with order, dependencies, milestones, integration points, and simple responsibilities. If a responsibility cannot be implemented clearly in approximately 10-20 lines, create a separate plan document for it.
 
 Every plan item must link requirements, domain/context IDs, responsibility IDs, architecture decisions, concrete changes, tests, and acceptance checks.
+
+Before final approval, add a critical-path and token-investment review to the roadmap or the relevant plan. It must identify high-cost or uncertain work, estimate relative effort, justify it against the decisive output, and state which tempting work is intentionally not funded. Rework the plan when a non-primary concern consumes disproportionate effort.
 
 Include repository-boundary work when required: ignore-rule updates, generated-code policy, secret-safe configuration examples, and pre-commit verification. Plans must name the files that should be tracked and the classes of local or generated files that must remain untracked.
 

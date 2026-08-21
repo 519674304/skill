@@ -32,6 +32,17 @@ Create `<complex-responsibility>-plan.md` when it includes:
 - Several test levels
 - Rollout or compatibility risk
 
+## Critical-Path and Token-Investment Review
+
+Before treating a plan as implementation-ready, record:
+
+- the hard or uncertain steps;
+- each step's relative reasoning, implementation, and verification cost;
+- why that cost is justified by the decisive user output; and
+- tempting work deliberately not funded in this iteration.
+
+Use relative bands or percentages, not fabricated exact token counts. If a non-primary concern consumes disproportionate effort, simplify it, defer it, or ask the user to choose before implementation.
+
 ## Plan Item Content
 
 Every plan item includes:
@@ -69,6 +80,7 @@ Adjust when a technical spike must retire a high-risk assumption first.
 - Every plan has a requirement source.
 - Dependencies form an executable order.
 - Plans do not conceal unresolved business questions.
+- Plans include a critical-path and token-investment review, with non-investments stated explicitly.
 - Complex responsibilities have independent plans.
 - Integration points have contract tests.
 - Performance requirements have benchmark tasks.
