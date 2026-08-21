@@ -1,5 +1,13 @@
 ﻿# Requirements Phase
 
+## Personal Project Fast Path
+
+Use this section only when the user explicitly selects the fast path. Write a compact brief covering the user, primary flow, one input/output baseline, and smoke acceptance checks. Do not require a full issue table: record only malformed input, whole-operation rejection or replacement, and failures that prevent the smoke flow from completing.
+
+For versioned imports, keep the rule simple unless the user requests more: an existing version is replaced after preflight passes; a missing version is created. An external AI preflight may classify the import, but the requirement remains binary: accept and replace, or reject without changing usable content.
+
+State the out-of-scope risks rather than designing taxonomy, retries, recovery, compatibility, or version history by default.
+
 ## Whole First
 
 Confirm these project-level decisions before decomposing features:

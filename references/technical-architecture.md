@@ -14,6 +14,7 @@ Collect:
 - Security/compliance
 - Offline requirements
 - Team skills and operational capacity
+- Team familiarity with selected languages, frameworks, and runtime tools
 
 Do not select technology from popularity alone.
 
@@ -60,6 +61,7 @@ Define:
 - Security boundaries
 - Performance test strategy
 - Migration and compatibility
+- Code readability and documentation strategy for unfamiliar technologies
 
 ## Decoupling Rules
 
@@ -68,6 +70,7 @@ Define:
 - Infrastructure adapters implement inner-layer ports.
 - Business rules do not depend on framework types.
 - Technology replacement should not alter domain semantics.
+- When using unfamiliar languages or frameworks, architecture must define how code explains itself: module responsibility headers, public type/function documentation, important invariants, failure policy, and step comments for complex flows. Avoid clever abstractions, macros, or generic layers that make code the only understanding entry point.
 
 ## Safety-Net Audit
 
@@ -79,4 +82,4 @@ Define:
 - Capacity assumptions match requirements.
 - Observability can prove acceptance criteria.
 - Technology choices are reversible where change is plausible.
-
+- New or unfamiliar technology has an explicit readability and onboarding strategy.

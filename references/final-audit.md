@@ -2,6 +2,18 @@
 
 Run this audit after the detailed plans are written and before final approval.
 
+## Personal Project Fast Path
+
+When the fast path is selected, replace the full audit with these checks:
+
+- The primary flow works from approved input baseline to expected output.
+- Each smoke acceptance check has a clear manual or automated verification step.
+- Import or replacement either completes as a whole or leaves the last usable content unchanged.
+- The compact brief lists intentionally deferred risks.
+- The user explicitly approved the compact brief, prototype when applicable, and implementation checklist.
+
+Do not require a structured issue taxonomy, retry policy, recovery matrix, version history, or extension audit unless the project scope made one necessary.
+
 ## Whole
 
 - Project objective, users, scope, and primary flow remain consistent.

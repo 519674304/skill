@@ -1,5 +1,11 @@
 ﻿# Responsibility Design Phase
 
+## Personal Project Fast Path
+
+When the fast path is selected, document only the responsibilities needed for the primary flow and smoke checks. A concise input -> processing -> output boundary is sufficient when it explains the code without ambiguity.
+
+Do not require a shared issue contract, severity taxonomy, extension pattern, recovery policy, or a separate complex-responsibility document unless the user identifies a real failure, integration, or data-risk need. For imports, prefer one explicit rule: preflight passes and the whole replacement applies, or it fails and existing usable content remains unchanged.
+
 ## Whole First
 
 Create `00-responsibility-map.md` showing:

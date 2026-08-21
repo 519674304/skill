@@ -17,6 +17,19 @@ Complete each phase in order. Do not enter the next phase until:
 
 If the user changes an approved upstream decision, mark affected downstream documents stale and return to the earliest impacted phase.
 
+## Personal Project Fast Path
+
+Use the full workflow by default. Use this optional path only when the user explicitly selects it and the project is a single-owner or small personal tool with no compliance, shared-team, public-service, or irreversible-data-risk requirement.
+
+- Optimize for a usable primary flow, one input/output baseline, a low-fidelity UI prototype when applicable, and smoke acceptance checks.
+- Keep import and configuration preflight binary: accept and replace, or reject without changing usable content. An external AI preflight may be used when the user provides that capability.
+- Keep only smoke-blocking exceptions: malformed or unreadable input, destructive replacement, and the primary flow's terminal failure. Do not require an issue taxonomy, error-code catalog, retry matrix, rollback model, or degradation design unless the user asks or real risk requires it.
+- Keep version management minimal: use the declared version as an identifier; replace it when it already exists and create it when it does not. Do not design history, backup, activation states, or migrations without an explicit need.
+- Use light domain and responsibility notes only for boundaries needed to implement the primary flow. Skip separate lifecycle, extension, and technology-selection documents unless a real variation, integration, or nontrivial risk appears.
+- End with a small file-level implementation checklist and smoke acceptance checks. Keep explicit user approval before implementation, but combine approval gates when a separate artifact adds no decision value.
+
+Do not use this path merely to omit a risk that affects other users, money, regulated data, public availability, or irreversible data loss.
+
 ## Working Order: Whole, Parts, Safety Net
 
 Apply this order in every phase:
@@ -37,6 +50,7 @@ Do not start by designing isolated classes, tables, APIs, plugins, or UI compone
 - Select patterns only after identifying lifecycle and real variation points.
 - Record why plugins, interceptors, listeners, factories, strategies, state machines, or middleware are used or rejected.
 - Choose technology and middleware from quantified constraints. Explicitly state when no middleware is needed.
+- When a selected technology or language is unfamiliar to the user or team, make readability a first-class architecture constraint. Require module responsibility notes, public type/function documentation, and step comments for complex flows so responsibilities and comments are the primary understanding entry point, not raw code.
 - Maintain requirement-to-test traceability.
 - Before choosing exception-handling patterns, define a structured issue taxonomy: category, severity, producing responsibility, receiving responsibility, continuation policy, logging level, and user-facing conversion. Define concrete error codes only when the project needs them.
 - Work backward from the project's decisive output. Maintain approved key input and output examples as executable-looking data contracts, and use them to correct requirements, domain design, architecture, and plans when prose drifts.
@@ -45,6 +59,8 @@ Do not start by designing isolated classes, tables, APIs, plugins, or UI compone
 - Establish the repository boundary before implementation. Read [references/version-control.md](references/version-control.md). Do not allow dependencies, generated outputs, caches, logs, temporary files, local environment files, credentials, or secrets into version control by accident.
 - Treat source-control inclusion as an ownership decision, not a filename guess. Lockfiles, migrations, required generated source, fixtures, and other reproducibility inputs may belong in Git; document the decision when it is not obvious.
 - Before any staging or commit operation, inspect repository status, ignore behavior, and the staged diff. Stage reviewed paths intentionally; do not use an indiscriminate repository-wide add while unreviewed or untracked files are present.
+
+When Personal Project Fast Path is selected, the issue-table and structured-taxonomy requirements above apply only to smoke-blocking exceptions. Do not expand them into enterprise-style error design.
 
 ## Required Document Structure
 
@@ -73,6 +89,18 @@ Write the requirements documents and traceable requirement IDs.
 Create the project's key example baselines under `docs/project/baselines/`. Read [references/key-example-baselines.md](references/key-example-baselines.md). At minimum, include one primary-flow input example, one expected output example, and an explicit mapping between them. These are required review artifacts, not illustrative appendices.
 
 **Approval gate:** Ask the user to approve the complete requirements set. Stop until approved.
+
+### Personal Project Fast Path Sequence
+
+After Phase 0, use this compact sequence instead of Phases 1 through 6 when the optional path is selected:
+
+1. Define the user, primary flow, one decisive input/output baseline, and smoke acceptance checks. Record only import rejection or replacement behavior that can block the smoke flow.
+2. For a graphical application, create and approve one low-fidelity prototype for the primary flow. Skip separate state, responsive, or exception prototypes unless they block use.
+3. Record the smallest domain and responsibility boundary needed to keep the primary flow understandable. Add lifecycle, patterns, or architecture decisions only when implementation uncovers a concrete need.
+4. Create a short file-level implementation checklist linked to the baseline and smoke checks.
+5. Ask for one explicit approval of the compact brief, prototype when applicable, and checklist before implementation.
+
+The compact brief must state that the fast path was selected, why it is safe, and which risks remain intentionally out of scope.
 
 ### Phase 2: Experience and Prototyping
 
