@@ -6,6 +6,16 @@ Validate the user-facing direction visually before domain, architecture, or fron
 
 This phase is required for Web, mobile, desktop, kiosk, embedded-display, and other graphical UI applications. Record a not-applicable decision for headless services, libraries, command-line tools, and background workers; do not silently skip the phase.
 
+## Staged Confirmation: Text First
+
+Do not jump straight to a visual prototype. Confirm direction in plain text before drawing anything:
+
+1. **Text mockup (in conversation)** — an ASCII or text sketch of the layout, primary regions, and material states. Confirm structure, placement, and which states matter before any visual artifact is produced.
+2. **Low-fidelity prototype** — after the text sketch is approved, produce one low-fidelity visual for the primary flow (below).
+3. **Real prototype** — only after low-fidelity is approved, and only when higher fidelity is genuinely needed.
+
+Each stage waits for explicit user approval before advancing. The text sketch is a required confirmation step, not a replacement for the low-fidelity artifact at the final approval gate.
+
 ## Low Fidelity First
 
 Create low-fidelity visual prototypes covering:

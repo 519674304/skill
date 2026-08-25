@@ -96,7 +96,7 @@ Create the project's key example baselines under `docs/project/baselines/`. Read
 After Phase 0, use this compact sequence instead of Phases 1 through 6 when the optional path is selected:
 
 1. Define the user, primary flow, one decisive input/output baseline, and smoke acceptance checks. Record only import rejection or replacement behavior that can block the smoke flow.
-2. For a graphical application, create and approve one low-fidelity prototype for the primary flow. Skip separate state, responsive, or exception prototypes unless they block use.
+2. For a graphical application, confirm the layout and states with a text mockup first, then create and approve one low-fidelity prototype for the primary flow. Skip separate state, responsive, or exception prototypes unless they block use.
 3. Record the smallest domain and responsibility boundary needed to keep the primary flow understandable. Add lifecycle, patterns, or architecture decisions only when implementation uncovers a concrete need.
 4. Perform and record a critical-path and token-investment review: identify the hard steps, assign relative effort, justify each material cost against the primary flow, and list deliberate non-investments. Resolve any high-cost behavior choice that would materially change the user experience.
 5. Create a short file-level implementation checklist linked to the baseline, smoke checks, and effort review.
@@ -108,7 +108,7 @@ The compact brief must state that the fast path was selected, why it is safe, an
 
 Read [references/experience-prototyping.md](references/experience-prototyping.md).
 
-For every Web, desktop, mobile, or other graphical user-interface application, start with a visual low-fidelity prototype after requirements approval. A prose screen list is not a substitute. Validate the screen inventory, navigation, information hierarchy, primary flows, major actions, and essential states without selecting a frontend framework or polishing visual style.
+For every Web, desktop, mobile, or other graphical user-interface application, confirm the layout and states with a text mockup first, then produce a visual low-fidelity prototype after requirements approval. A prose screen list is not a substitute. Validate the screen inventory, navigation, information hierarchy, primary flows, major actions, and essential states without selecting a frontend framework or polishing visual style.
 
 Ask the user to approve the overall experience direction. After approval, ask explicitly whether any uncertain or high-risk flow, interaction state, or responsive layout needs further detail. Refine only what is needed. If no refinement is needed, record the approved low-fidelity prototype as the UI baseline and complete the phase.
 
